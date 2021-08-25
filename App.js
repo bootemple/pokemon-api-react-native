@@ -5,13 +5,13 @@ import axios from 'axios';
 
 export default function App() {
 
-    const [pokemon, setPokemon] = useState('ditto')
+    const [pokemon, setPokemon] = useState('Ditto')
     const [pokemonData, setPokemonData] = useState([])
 
     const getPokemon = async () => {
         const toArray = []
         try {
-            const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+            const url = `https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`
             const res = await axios.get(url)
             console.log(res)
 
@@ -24,10 +24,22 @@ export default function App() {
     //     getPokemon()
     // },[])
 
+    const handleChange = (text) => {
+    console.log(text)
+        setPokemon(text)
+    }
+
+    const handlePress = (e) => {
+        e.preventDefault()
+        getPokemon()
+    }
+
     return (
         <View style={styles.container}>
             <TouchableHighlight onPress={handlePress}>
-<TextInput value={text} onChange={handleChange} placeholder="Enter Pokemon name.">
+<TextInput
+    value={pokemon}
+    onChangeText={ handleChange} placeholder="Enter Pokemon name.">
 
 </TextInput>
             </TouchableHighlight>
