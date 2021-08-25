@@ -1,25 +1,36 @@
 import {StatusBar} from 'expo-status-bar';
-import React, {useState} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {StyleSheet, Text, TextInput, TouchableHighlight, View} from 'react-native';
 import axios from 'axios';
 
 export default function App() {
 
-    const [pokemon, setPokemon] = useState('pikachu')
+    const [pokemon, setPokemon] = useState('ditto')
     const [pokemonData, setPokemonData] = useState([])
 
-  const getPokemon = async () => {
-      const toArray = []
-    try {
-const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
-    } catch (e) {
-        console.log(e)
+    const getPokemon = async () => {
+        const toArray = []
+        try {
+            const url = `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+            const res = await axios.get(url)
+            console.log(res)
+
+        } catch (e) {
+            console.log(e)
+        }
     }
-  }
+
+    // useEffect(() => {
+    //     getPokemon()
+    // },[])
 
     return (
         <View style={styles.container}>
-            <Text>pokeapi</Text>
+            <TouchableHighlight onPress={handlePress}>
+<TextInput value={text} onChange={handleChange} placeholder="Enter Pokemon name.">
+
+</TextInput>
+            </TouchableHighlight>
         </View>
     );
 }
