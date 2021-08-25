@@ -3,24 +3,41 @@ import React, {useEffect, useState} from 'react';
 import {StyleSheet, Text, TextInput, TouchableHighlight, View} from 'react-native';
 import axios from 'axios';
 import async from "async";
-import {getAllPokemon} from "./services/pokemon";
+import {getAllPokemon,getPokemon} from "./services/pokemon";
 
 export default function App() {
 
     const [pokemon, setPokemon] = useState('Ditto')
     const [pokemonData, setPokemonData] = useState([])
     const [loading, setLoading] = useState(true)
-    const initialUrl = 'https://pokeapi.co/api/v2/pokemon'
+    const initialUrl = 'https://pokeapi.co/api/v2/pokemon?limit=50'
 
     useEffect(() => {
         async function fetchData() {
             let response = await getAllPokemon(initialUrl)
-            console.log(response)
+            // map through response
+            // console.log(response)
+
+            let pokemon = await loadingPokemon(response.results)
             setLoading(false)
         }
 fetchData()
     }, [])
 
+    const loadingPokemon = async (data) => {
+        let _pokemonData = await Promise.all(
+            data.map(async pokemon => {
+                // RETURNS POKEMON
+                // let pokemonRecords = await getPokemon(pokemon.url)
+                // RETURNS ABILITIES??
+                let pokemonRecord = await getPokemon(pokemon.url)
+                return pokemonRecord
+            }))
+
+        setPokemonData(_pokemonData)
+    }
+
+    console.log(pokemonData)
     // const getPokemon = async () => {
     //     const toArray = []
     //     try {
@@ -76,6 +93,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 });
+
 
 
 // import React, { Component } from 'react';
