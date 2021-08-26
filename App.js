@@ -1,5 +1,6 @@
 import {StatusBar} from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
+import Card from './components/Card/Card'
 import {StyleSheet, Text, TextInput, TouchableHighlight, View} from 'react-native';
 import axios from 'axios';
 import async from "async";
@@ -77,7 +78,14 @@ fetchData()
 
         <View>
             { loading ? <Text>Loading...</Text> : (
-                <Text>Data is fetched!</Text>
+                <>
+                    <View style={styles.container}>
+                        {pokemonData.map((pokemon, i) => {
+return <Card key={i} pokemon={pokemon}/>
+                        })}
+
+                    </View>
+                </>
             )}
         </View>
 
