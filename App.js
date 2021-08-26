@@ -17,7 +17,7 @@ export default function App() {
         async function fetchData() {
             let response = await getAllPokemon(initialUrl)
             // map through response
-            // console.log(response)
+             console.log(response)
 
             let pokemon = await loadingPokemon(response.results)
             setLoading(false)
@@ -38,44 +38,9 @@ fetchData()
         setPokemonData(_pokemonData)
     }
 
-    console.log(pokemonData)
-    // const getPokemon = async () => {
-    //     const toArray = []
-    //     try {
-    //         const url = `https://pokeapi.co/api/v2/pokemon/${pokemon.toLowerCase()}`
-    //         const res = await axios.get(url)
-    //         console.log(res)
-    //
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    // }
-
-    // useEffect(() => {
-    //     getPokemon()
-    // },[])
-
-    // const handleChange = (text) => {
-    //     console.log(text)
-    //     setPokemon(text)
-    // }
-    //
-    // const handlePress = (e) => {
-    //     e.preventDefault()
-    //     getPokemon()
-    // }
+console.log(pokemonData)
 
     return (
-        // <View style={styles.container}>
-        //     <TouchableHighlight onPress={handlePress}>
-        //         <TextInput
-        //             value={pokemon}
-        //             onChangeText={handleChange} placeholder="Enter Pokemon name.">
-        //
-        //         </TextInput>
-        //     </TouchableHighlight>
-        // </View>
-
         <View>
             { loading ? <Text>Loading...</Text> : (
                 <>
@@ -83,22 +48,19 @@ fetchData()
                         {pokemonData.map((pokemon, i) => {
 return <Card key={i} pokemon={pokemon}/>
                         })}
-
                     </View>
                 </>
             )}
         </View>
-
-
     );
 }
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+        // flex: 1,
+        // backgroundColor: '#fff',
+        // alignItems: 'center',
+        // justifyContent: 'center',
     },
 });
 
