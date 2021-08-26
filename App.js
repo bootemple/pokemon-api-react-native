@@ -44,13 +44,13 @@ export default function App() {
 
     return (
         <View style={styles.container}>
-            {loading ? <Text>Loading...</Text> : (
+            {loading ? <Text style={styles.loading}>Loading...</Text> : (
                 <>
                     <Header
                         height={15}
                         textColor={'black'}
                         alignment="center"
-                        color={'#fddde6'}
+                        color={'#ffe4e1'}
                         headerText={'Pokédex'}
                     >
                     </Header>
@@ -73,4 +73,10 @@ const styles = StyleSheet.create({
         // justifyContent: 'center',
         backgroundColor: '#f5fffa',
     },
+    loading: {
+justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold',
+        fontSize: 50,
+    }
 });
