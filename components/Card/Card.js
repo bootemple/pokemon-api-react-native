@@ -14,8 +14,8 @@ export default function Card({pokemon}) {
                     }}/>
             </View>
 
-            <View style={styles.cardName}>
-                <Text>Name: {pokemon.name}</Text>
+            <View>
+                <Text style={styles.cardName}>Name: {pokemon.name.toUpperCase()}</Text>
             </View>
 
             {/*TYPE*/}
@@ -30,17 +30,17 @@ export default function Card({pokemon}) {
             {/*</View>*/}
 
             <View style={styles.cardInfo}>
-                <View style={styles.cardWeight}>
-                    {/*<Text style={styles.title}>Weight</Text>*/}
-                    <Text>Weight: {pokemon.weight}</Text>
-                </View>
-                <View style={styles.cardHeight}>
+
+                {/*<Text style={styles.title}>Weight</Text>*/}
+                <Text style={styles.cardWeight}>Weight: {pokemon.weight}</Text>
+
+                <View>
                     {/*<Text style={styles.title}>Height</Text>*/}
-                    <Text>Height: {pokemon.height}</Text>
+                    <Text style={styles.cardHeight}>Height: {pokemon.height}</Text>
                 </View>
-                <View style={styles.cardAbility}>
+                <View>
                     {/*<Text style={styles.title}>Ability</Text>*/}
-                    <Text>Ability: {pokemon.abilities[0].ability.name}</Text>
+                    <Text style={styles.cardAbility}>Main Ability: {pokemon.abilities[0].ability.name}</Text>
                 </View>
             </View>
         </View>
@@ -49,12 +49,17 @@ export default function Card({pokemon}) {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: 'red',
+        backgroundColor: '#fdf5e6',
         borderRadius: 10,
-        width:300,
-        height:380,
-padding: 10,
-        margin: 50
+        width: 300,
+        height: 380,
+        padding: 10,
+        margin: 50,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.8,
+        shadowRadius: 2,
+        elevation: 5
     },
     cardImage: {
         alignItems: 'center',
@@ -69,23 +74,35 @@ padding: 10,
         justifyContent: 'center',
     },
     cardType: {
-       padding: 10,
+        padding: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        color:'#fff',
+        color: '#fff',
     },
-cardName: {
+    cardName: {
         textAlign: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontWeight: 'bold',
-},
-cardInfo: {
-        marginLeft: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        fontWeight: 'bold',
+    },
+    cardInfo: {
+        padding: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     cardData: {
         paddingBottom: 10
     },
-
-
+    cardWeight: {
+        fontWeight: 'bold',
+        padding: 5,
+    },
+    cardHeight: {
+        fontWeight: 'bold',
+        padding: 5,
+    },
+    cardAbility: {
+        fontWeight: 'bold',
+        padding: 5,
+    }
 });
