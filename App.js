@@ -1,7 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
 import React, {useEffect, useState} from 'react';
 import Card from './components/Card/Card'
-import {StyleSheet, Text, TextInput, TouchableHighlight, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View} from 'react-native';
 import axios from 'axios';
 import async from "async";
 import {getAllPokemon,getPokemon} from "./services/pokemon";
@@ -41,14 +41,14 @@ fetchData()
 console.log(pokemonData)
 
     return (
-        <View>
+        <View style={styles.container}>
             { loading ? <Text>Loading...</Text> : (
                 <>
-                    <View style={styles.container}>
+                    <ScrollView>
                         {pokemonData.map((pokemon, i) => {
 return <Card key={i} pokemon={pokemon}/>
                         })}
-                    </View>
+                    </ScrollView>
                 </>
             )}
         </View>
@@ -57,7 +57,7 @@ return <Card key={i} pokemon={pokemon}/>
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
+        flex: 1,
         // backgroundColor: '#fff',
         // alignItems: 'center',
         // justifyContent: 'center',
