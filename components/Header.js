@@ -3,7 +3,7 @@ import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 export const Header = (props) => {
-    console.log('props->', props)
+    // console.log('props->', props)
     return (
         <>
             <View style={{height: `${props.height}%`,

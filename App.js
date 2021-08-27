@@ -3,7 +3,6 @@ import React, {useEffect, useState} from 'react';
 import Card from './components/Card/Card'
 import {ScrollView, StyleSheet, Text, TextInput, TouchableHighlight, View} from 'react-native';
 import axios from 'axios';
-import async from "async";
 import {getAllPokemon, getPokemon} from "./services/pokemon";
 import {Header} from "./components/Header";
 
@@ -18,7 +17,7 @@ export default function App() {
         async function fetchData() {
             let response = await getAllPokemon(initialUrl)
             // map through response
-            console.log(response)
+            // console.log(response)
 
             let pokemon = await loadingPokemon(response.results)
             setLoading(false)
@@ -36,12 +35,9 @@ export default function App() {
                 let pokemonRecord = await getPokemon(pokemon.url)
                 return pokemonRecord
             }))
-
         setPokemonData(_pokemonData)
     }
-
-    console.log(pokemonData)
-
+    // console.log(pokemonData)
     return (
         <View style={styles.container}>
             {loading ? <Text style={styles.loading}>Loading...</Text> : (
@@ -54,7 +50,7 @@ export default function App() {
                         headerText={'Pokédex'}
                     >
                     </Header>
-                    <ScrollView>
+                    <ScrollView contentContainerStyle={styles.contentContainer}>
                         {pokemonData.map((pokemon, i) => {
                             return <Card key={i} pokemon={pokemon}/>
                         })}
@@ -78,5 +74,9 @@ justifyContent: 'center',
         alignItems: 'center',
         fontWeight: 'bold',
         fontSize: 50,
+    },
+    contentContainer: {
+        alignItems: 'center',
+        justifyContent: 'center',
     }
 });
